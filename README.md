@@ -116,8 +116,8 @@ An Example List with Embedded Items:
 
 (__TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed)
 
-(2 points) Integration of Climatiq API
-* Enables accurate emissions data retrieval based on user activities for precise carbon calculations.
+* (2 points) Integration of Climatiq API
+ Enables accurate emissions data retrieval based on user activities for precise carbon calculations.
 (3 points) Unit Testing with JavaScript (Jest)
 * Ensures core functions, especially emission calculations, work reliably under various scenarios.
 (3 points) User Authentication Using OAuth (Google, Facebook, Apple)
