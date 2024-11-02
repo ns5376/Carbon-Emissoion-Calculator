@@ -2,7 +2,7 @@ The content below is an example project proposal / requirements document. Replac
 
 (__TODO__: The Carbon Dioxide Emission Calculator)
 
-# Shoppy Shoperson 
+# The Carbon Dioxide Emission Calculator
 
 ## Overview
 
@@ -77,7 +77,7 @@ An Example List with Embedded Items:
 
 ## Wireframes
 
-(__TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc.)
+
 
 
 ![home](documentation/home.jpg)
@@ -100,7 +100,7 @@ An Example List with Embedded Items:
 
 ## User Stories or Use Cases
 
-(__TODO__: write out how your application will be used through [user stories](http://en.wikipedia.org/wiki/User_story#Format) and / or [use cases](https://en.wikipedia.org/wiki/Use_case))
+
 
 * As a new visitor, I want to understand what the application does, so that I can decide if I want to use it.
 * As a new user, I want to easily register for an account, so that I can securely store and track my carbon emission data.
@@ -114,16 +114,15 @@ An Example List with Embedded Items:
 
 ## Research Topics
 
-(__TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed)
 
 * (2 points) Integration of Climatiq API
  Enables accurate emissions data retrieval based on user activities for precise carbon calculations.
 (3 points) Unit Testing with JavaScript (Jest)
-* Ensures core functions, especially emission calculations, work reliably under various scenarios.
-(3 points) User Authentication Using OAuth (Google, Facebook, Apple)
-* Allows secure and convenient login options for users via popular social accounts.
-(2 points) Integrate ESLint into Your Workflow
-* Maintains code quality, making your application more maintainable and secure, especially important when handling sensitive information like tokens and API data.
+Ensures core functions, especially emission calculations, work reliably under various scenarios.
+* (3 points) User Authentication Using OAuth (Google, Facebook, Apple)
+Allows secure and convenient login options for users via popular social accounts.
+* (2 points) Integrate ESLint into Your Workflow
+Maintains code quality, making your application more maintainable and secure, especially important when handling sensitive information like tokens and API data.
 Total Points: 10 Points
 
 
@@ -133,8 +132,5 @@ Total Points: 10 Points
 
 ## Annotations / References Used
 
-(__TODO__: list any tutorials/references/etc. that you've based your code off of)
 
-1. [passport.js authentication docs](http://passportjs.org/docs) - (add link to source code that was based on this)
-2. [tutorial on vue.js](https://vuejs.org/v2/guide/) - (add link to source code that was based on this)
 
