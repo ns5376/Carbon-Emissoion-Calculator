@@ -18,8 +18,8 @@ The Carbon Dioxide Emission Calculator is designed to help individuals and organ
 
 The application will store Users and Emission Entries:
 
--Users can have multiple Emission Entries (via references)
--Each Emission Entry corresponds to a single user, but contains detailed records of different emission categories embedded within each entry.
+* Users can have multiple Emission Entries (via references)
+* Each Emission Entry corresponds to a single user, but contains detailed records of different emission categories embedded within each entry.
 
 (__TODO__: sample documents)
 
@@ -90,7 +90,6 @@ An Example List with Embedded Items:
 ![register](documentation/register.jpg)
 ![dashboard](documentation/dashboard.jpg)
 
-![list](documentation/list-slug.png)
 
 ## Site map
 
@@ -103,28 +102,28 @@ An Example List with Embedded Items:
 
 (__TODO__: write out how your application will be used through [user stories](http://en.wikipedia.org/wiki/User_story#Format) and / or [use cases](https://en.wikipedia.org/wiki/Use_case))
 
--As a new visitor, I want to understand what the application does, so that I can decide if I want to use it.
--As a new user, I want to easily register for an account, so that I can securely store and track my carbon emission data.
--As a user, I want to log in to my account, so that I can access my personal emission data.
--As a user, I want to input data regarding my daily activities, so that I can calculate my carbon emissions for those activities.
--As a user, I want to view a summary of my emissions over different periods (daily, weekly, monthly), so that I can understand my emission trends.
--As a user, I want to modify or delete previously entered emission data, so that I can correct mistakes and keep my data accurate.
--As a user, I want to be able to change my account settings, so that I can update my personal information or password.
--As a user, I want to log out of the application, so that I can ensure no one else has access to my data on my device.
--As an administrator, I want to see statistics about user engagement and data entries, so that I can gauge the success of the application.
+* As a new visitor, I want to understand what the application does, so that I can decide if I want to use it.
+* As a new user, I want to easily register for an account, so that I can securely store and track my carbon emission data.
+* As a user, I want to log in to my account, so that I can access my personal emission data.
+* As a user, I want to input data regarding my daily activities, so that I can calculate my carbon emissions for those activities.
+* As a user, I want to view a summary of my emissions over different periods (daily, weekly, monthly), so that I can understand my emission trends.
+* As a user, I want to modify or delete previously entered emission data, so that I can correct mistakes and keep my data accurate.
+* As a user, I want to be able to change my account settings, so that I can update my personal information or password.
+* As a user, I want to log out of the application, so that I can ensure no one else has access to my data on my device.
+* As an administrator, I want to see statistics about user engagement and data entries, so that I can gauge the success of the application.
 
 ## Research Topics
 
 (__TODO__: the research topics that you're planning on working on along with their point values... and the total points of research topics listed)
 
 (2 points) Integration of Climatiq API
-Enables accurate emissions data retrieval based on user activities for precise carbon calculations.
+* Enables accurate emissions data retrieval based on user activities for precise carbon calculations.
 (3 points) Unit Testing with JavaScript (Jest)
-Ensures core functions, especially emission calculations, work reliably under various scenarios.
+* Ensures core functions, especially emission calculations, work reliably under various scenarios.
 (3 points) User Authentication Using OAuth (Google, Facebook, Apple)
-Allows secure and convenient login options for users via popular social accounts.
+* Allows secure and convenient login options for users via popular social accounts.
 (2 points) Integrate ESLint into Your Workflow
-Maintains code quality, making your application more maintainable and secure, especially important when handling sensitive information like tokens and API data.
+* Maintains code quality, making your application more maintainable and secure, especially important when handling sensitive information like tokens and API data.
 Total Points: 10 Points
 
 
