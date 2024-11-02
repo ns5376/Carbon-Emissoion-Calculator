@@ -1,19 +1,17 @@
 The content below is an example project proposal / requirements document. Replace the text below the lines marked "__TODO__" with details specific to your project. Remove the "TODO" lines.
 
-(__TODO__: The Carbon Dioxide Emission Calculator)
 
 # The Carbon Dioxide Emission Calculator
 
 ## Overview
 
-(__TODO__: a brief one or two paragraph, high-level description of your project)
+
 
 The Carbon Dioxide Emission Calculator is designed to help individuals and organizations estimate their carbon footprint based on daily activities such as transportation, home energy use, and lifestyle choices. By inputting simple data about their daily routines, users can see how their actions contribute to carbon emissions, enabling them to make informed decisions about reducing their environmental impact.
 
 
 ## Data Model
 
-(__TODO__: a description of your application's data and their relationships to each other) 
 
 
 The application will store Users and Emission Entries:
@@ -21,7 +19,7 @@ The application will store Users and Emission Entries:
 * Users can have multiple Emission Entries (via references)
 * Each Emission Entry corresponds to a single user, but contains detailed records of different emission categories embedded within each entry.
 
-(__TODO__: sample documents)
+
 
 An Example User:
 
@@ -73,7 +71,7 @@ An Example List with Embedded Items:
 
 ## [Link to Commented First Draft Schema](https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-ns5376/blob/master/db.mjs) 
 
-(__TODO__: create a first draft of your Schemas in db.mjs and link to it)
+
 
 ## Wireframes
 
@@ -93,7 +91,7 @@ An Example List with Embedded Items:
 
 ## Site map
 
-(__TODO__: draw out a site map that shows how pages are related to each other)
+
 
 ![Site Map](https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-ns5376/blob/master/documentation/sitemap.jpg)
 
@@ -123,12 +121,12 @@ An Example List with Embedded Items:
   * Allows secure and convenient login options for users via popular social accounts.
 * (2 points) Integrate ESLint into Your Workflow
   * Maintains code quality, making your application more maintainable and secure, especially important when handling sensitive information like tokens and API data.
-Total Points: 10 Points
+* Total Points: 10 Points
 
 
 ## [Link to Initial Main Project File](app.mjs) 
 
-(__TODO__: create a skeleton Express application with a package.json, app.mjs, views folder, etc. ... and link to your initial app.mjs)
+
 
 ## Annotations / References Used
 
