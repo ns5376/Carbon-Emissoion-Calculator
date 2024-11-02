@@ -108,7 +108,7 @@ An Example List with Embedded Items:
 * As a user, I want to modify or delete previously entered emission data, so that I can correct mistakes and keep my data accurate.
 * As a user, I want to be able to change my account settings, so that I can update my personal information or password.
 * As a user, I want to log out of the application, so that I can ensure no one else has access to my data on my device.
-* As an administrator, I want to see statistics about user engagement and data entries, so that I can gauge the success of the application.
+
 
 ## Research Topics
 
