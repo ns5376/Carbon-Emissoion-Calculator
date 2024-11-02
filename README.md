@@ -79,15 +79,16 @@ An Example List with Embedded Items:
 
 (__TODO__: wireframes for all of the pages on your site; they can be as simple as photos of drawings or you can use a tool like Balsamiq, Omnigraffle, etc.)
 
-/list/create - page for creating a new shopping list
 
-![list create](documentation/list-create.png)
-
-/list - page for showing all shopping lists
-
-![list](documentation/list.png)
-
-/list/slug - page for showing specific shopping list
+![home](documentation/home.jpg)
+/home2/ home page for when not logged in 
+![home2](documentation/home2.jpg) 
+/input/ page to enter emission data
+![input](documentation/input.jpg)
+![login](documentation/login.jpg)
+![profile](documentation/profile.jpg)
+![register](documentation/register.jpg)
+![dashboard](documentation/dashboard.jpg)
 
 ![list](documentation/list-slug.png)
 
