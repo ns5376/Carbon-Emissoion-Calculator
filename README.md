@@ -116,13 +116,13 @@ An Example List with Embedded Items:
 
 
 * (2 points) Integration of Climatiq API
- Enables accurate emissions data retrieval based on user activities for precise carbon calculations.
-(3 points) Unit Testing with JavaScript (Jest)
-Ensures core functions, especially emission calculations, work reliably under various scenarios.
+  * Enables accurate emissions data retrieval based on user activities for precise carbon calculations.
+* (3 points) Unit Testing with JavaScript (Jest)
+  * Ensures core functions, especially emission calculations, work reliably under various scenarios.
 * (3 points) User Authentication Using OAuth (Google, Facebook, Apple)
-Allows secure and convenient login options for users via popular social accounts.
+  * Allows secure and convenient login options for users via popular social accounts.
 * (2 points) Integrate ESLint into Your Workflow
-Maintains code quality, making your application more maintainable and secure, especially important when handling sensitive information like tokens and API data.
+  * Maintains code quality, making your application more maintainable and secure, especially important when handling sensitive information like tokens and API data.
 Total Points: 10 Points
 
 
