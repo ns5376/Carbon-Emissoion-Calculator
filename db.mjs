@@ -1,6 +1,14 @@
 // db.mjs
 import mongoose from 'mongoose';
+import 'dotenv/config';
+
 const { Schema } = mongoose;
+
+
+
+mongoose.connect(process.env.DSN)
+  .then(() => console.log('Database connected successfully!'))
+  .catch(err => console.error('Database connection error:', err));
 
 // Define EmissionDetailSchema
 const EmissionDetailSchema = new Schema({
