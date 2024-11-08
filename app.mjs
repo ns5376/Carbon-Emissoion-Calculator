@@ -18,6 +18,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
     res.render('home', { title: 'Carbon Dioxide Emission Calculator' });
   });
-  app.listen(process.env.PORT || 3000, '0.0.0.0', () => {
+  app.listen(33344 , '0.0.0.0', () => {
     console.log(`Server running on port ${33344}`);
 });
