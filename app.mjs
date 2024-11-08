@@ -1,6 +1,7 @@
 import express from 'express'
 import path from 'path'
 import { fileURLToPath } from 'url';
+import 'dotenv/config';
 
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -18,6 +19,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
     res.render('home', { title: 'Carbon Dioxide Emission Calculator' });
   });
-  app.listen(33344 , '0.0.0.0', () => {
-    console.log(`Server running on port ${33344}`);
+  app.listen(process.env.PORT , '0.0.0.0', () => {
+    console.log(`Server running on port ${process.env.PORT}`);
 });
