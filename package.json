@@ -1,0 +1,27 @@
+{
+  "name": "final-project-ns5376",
+  "version": "1.0.0",
+  "description": "The content below is an example project proposal / requirements document. Replace the text below the lines marked \"__TODO__\" with details specific to your project. Remove the \"TODO\" lines.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+<<<<<<< HEAD
+    "express": "^4.21.1",
+    "hbs": "^4.2.0",
+    "mongodb": "^6.10.0",
+    "mongoose": "^8.8.0"
+=======
+    "express-session": "^1.18.1",
+    "passport": "^0.7.0",
+    "passport-apple": "^2.0.2",
+    "passport-facebook": "^3.0.0",
+    "passport-google-oauth20": "^2.0.0"
+>>>>>>> b1fc147d85b4b93833330d2cc7f3202c8ab3cc22
+  }
+}
