@@ -3,11 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+  <title>{{title}}</title>
 </head>
 <body>
-  <h2>Welcome, {{user.name}}</h2>
-  <p>This is your home page after logging in.</p>
-  <a href="/logout">Logout</a>
+  <header>
+    <h1>{{message}}</h1>
+  </header>
+
+  <nav>
+    {{#if user}}
+      <p>Welcome, {{user.username}}!</p>
+      <a href="/logout">Logout</a>
+    {{else}}
+      <a href="/login">Login</a>
+      <a href="/register">Register</a>
+    {{/if}}
+  </nav>
+
+  <main>
+    <section>
+      <h2>About This App</h2>
+      <p>This application helps you calculate and track your carbon emissions based on your daily activities. By understanding your carbon footprint, you can make more environmentally conscious choices.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Carbon Emission Calculator. All rights reserved.</p>
+  </footer>
 </body>
 </html>

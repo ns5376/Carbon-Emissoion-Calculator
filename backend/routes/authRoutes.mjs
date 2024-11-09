@@ -1,32 +1,43 @@
 import express from 'express';
-import passport from '../config/passportConfig.mjs';
+import passport from 'passport';
 
 const router = express.Router();
 
-// Manual login route
-router.post('/auth/login', passport.authenticate('local', {
-  successRedirect: '/home',
+// Register
+router.post('/register', async (req, res) => {
+  try {
+    const user = new User({ username: req.body.username, email: req.body.email });
+    await User.register(user, req.body.password);
+    res.redirect('/login');
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+});
+
+// Login
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/dashboard',
   failureRedirect: '/login',
 }));
 
-// Google OAuth routes
+// Google OAuth
 router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 router.get('/auth/google/callback', passport.authenticate('google', {
-  successRedirect: '/home',
+  successRedirect: '/dashboard',
   failureRedirect: '/login',
 }));
 
-// Facebook OAuth routes
+// Facebook OAuth
 router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
 router.get('/auth/facebook/callback', passport.authenticate('facebook', {
-  successRedirect: '/home',
+  successRedirect: '/dashboard',
   failureRedirect: '/login',
 }));
 
-// Apple OAuth routes
+// Apple OAuth
 router.get('/auth/apple', passport.authenticate('apple'));
 router.post('/auth/apple/callback', passport.authenticate('apple', {
-  successRedirect: '/home',
+  successRedirect: '/dashboard',
   failureRedirect: '/login',
 }));
 
