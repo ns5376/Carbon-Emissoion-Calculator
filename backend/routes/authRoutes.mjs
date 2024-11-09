@@ -20,12 +20,19 @@ router.post('/login', passport.authenticate('local', {
   failureRedirect: '/login',
 }));
 
-// Google OAuth
-router.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
-router.get('/auth/google/callback', passport.authenticate('google', {
-  successRedirect: '/dashboard',
-  failureRedirect: '/login',
+// Start Google authentication
+router.get('/auth/google', passport.authenticate('google', {
+  scope: ['profile', 'email']
 }));
+
+// Google callback URL
+router.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  (req, res) => {
+      // Successful authentication, redirect to dashboard or home
+      res.redirect('/dashboard');
+  }
+);
 
 // Facebook OAuth
 router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));

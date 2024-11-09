@@ -6,7 +6,9 @@ import passport from 'passport';
 import User from './models/User.mjs';
 import 'dotenv/config';
 import path from 'path';
+import authRoutes from './routes/authRoutes.mjs';
 import { fileURLToPath } from 'url';
+import './controllers/authController.mjs'; 
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,7 +28,7 @@ app.use(session({
 // Initialize Passport and session support
 app.use(passport.initialize());
 app.use(passport.session());
-
+app.use(authRoutes);
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -92,6 +94,6 @@ app.get('/logout', (req, res) => {
   });
 
 // Start server
-app.listen(3000, () => {
+app.listen(5001, () => {
   console.log('Server running on http://localhost:3000');
 });
