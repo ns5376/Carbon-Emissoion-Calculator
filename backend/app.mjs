@@ -35,10 +35,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 // Connect to MongoDB
-mongoose.connect(process.env.DSN, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(process.env.DSN)
   .then(() => console.log('Database connected successfully'))
   .catch(err => console.error('Database connection error:', err));
 
