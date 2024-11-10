@@ -74,11 +74,6 @@ app.get('/login', (req, res) => {
   });
   
 
-
-  
-
-
-
 // Logout route
 app.get('/logout', (req, res) => {
     req.logout(() => {
@@ -86,7 +81,7 @@ app.get('/logout', (req, res) => {
     });
   });
 
-  app.listen(process.env.PORT, () => {
+  app.listen(process.env.PORT,'0.0.0.0', () => {
     console.log(`Server running on PORT:${process.env.PORT}`);
   });
   
