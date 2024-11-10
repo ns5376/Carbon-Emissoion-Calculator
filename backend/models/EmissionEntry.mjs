@@ -11,7 +11,7 @@ const EmissionDetailSchema = new Schema({
 
 // Define main schema for each emission entry
 const EmissionEntrySchema = new Schema({
-  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },  // Reference to the User
+  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true }, // Reference to the User
   date: { type: Date, default: Date.now },
   emissions: {
     transportation: EmissionDetailSchema,

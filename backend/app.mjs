@@ -18,6 +18,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, 'views'));
 // Set up sessions
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -46,23 +47,24 @@ app.get('/', (req, res) => {
     res.render('home', { 
       title: 'Home', 
       message: 'Welcome to the Carbon Emission Calculator!',
-      user: req.user  // Pass user information if authenticated
+      user: req.user // Pass user information if authenticated
     });
   });
   
 
-app.get('/dashboard', (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.redirect('/login');
-  }
-  res.send('Welcome to your dashboard!');
-});
+  app.get('/dashboard', (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.redirect('/login');
+    }
+    res.render('dashboard', { user: req.user });
+  });
+  
 
 app.get('/login', (req, res) => {
     res.render('login', { title: 'Login', user: req.user });
   });
   app.post('/login', passport.authenticate('local', {
-    successRedirect: '/',  // Redirect to home page on successful login
+    successRedirect: '/', // Redirect to home page on successful login
     failureRedirect: '/login'
   }));
   
@@ -72,16 +74,7 @@ app.get('/login', (req, res) => {
   });
   
 
-// Registration route
-app.post('/register', async (req, res) => {
-    try {
-      const user = new User({ username: req.body.username, email: req.body.email });
-      await User.register(user, req.body.password);
-      res.redirect('/login');  // Redirect to login after registration
-    } catch (error) {
-      res.status(500).send(error.message);
-    }
-  });
+
   
 
 
@@ -89,7 +82,7 @@ app.post('/register', async (req, res) => {
 // Logout route
 app.get('/logout', (req, res) => {
     req.logout(() => {
-      res.redirect('/');  // Redirect to home page after logout
+      res.redirect('/'); // Redirect to home page after logout
     });
   });
 
