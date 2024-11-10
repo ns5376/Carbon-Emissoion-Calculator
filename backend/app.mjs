@@ -82,6 +82,6 @@ app.get('/logout', (req, res) => {
   });
 
   app.listen(process.env.PORT,'0.0.0.0', () => {
-    console.log(`Server running on PORT:${process.env.PORT}`);
+    console.log(`Server running on http://linserv1.cims.nyu.edu:${process.env.PORT}`);
   });
   
