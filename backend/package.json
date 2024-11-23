@@ -4,10 +4,10 @@
   "description": "The content below is an example project proposal / requirements document. Replace the text below the lines marked \"__TODO__\" with details specific to your project. Remove the \"TODO\" lines.",
   "main": "index.js",
   "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "",
+  "scripts": {
+    "build-css": "postcss public/css/styles.css -o public/built.css"
+  },
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -23,10 +23,14 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.14.0",
+    "autoprefixer": "^10.4.20",
     "eslint": "^9.14.0",
     "globals": "^15.12.0",
     "gulp": "^5.0.0",
     "gulp-eslint": "^6.0.0",
-    "gulp-watch": "^5.0.1"
+    "gulp-watch": "^5.0.1",
+    "postcss": "^8.4.49",
+    "postcss-cli": "^11.0.0",
+    "tailwindcss": "^3.4.15"
   }
 }

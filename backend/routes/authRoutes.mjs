@@ -50,7 +50,15 @@ router.post('/login', (req, res, next) => {
 });
 
 
-
+router.get('/emission-form', (req, res) => {
+  // Check if user is logged in, redirect if not
+  if (!req.isAuthenticated()) {
+      res.redirect('/login');
+  } else {
+      // Render the Emission Entry Form view
+      res.render('emission-form'); // Ensure you have an 'emissionform.hbs' in your views directory
+  }
+});
 // OAuth Google login route
 router.get('/auth/google', passport.authenticate('google', {
   scope: ['profile', 'email']
@@ -78,5 +86,32 @@ router.post('/auth/apple/callback', passport.authenticate('apple', {
   successRedirect: '/dashboard',
   failureRedirect: '/login',
 }));
+
+// In routes file like authRoutes.mjs or a new route file, e.g., apiRoutes.mjs
+router.post('/api/submit', async (req, res) => {
+  try {
+      // Extract data from request body
+      const { date, transport, electricity } = req.body;
+
+      // Optionally, interact with an external API like Climatiq here if needed
+      // For example, send data to Climatiq and receive calculation results
+
+      // Save the data to your database using the EmissionEntry model
+      const newEntry = await EmissionEntry.create({
+          userId: req.user._id, // Assuming user is logged in and session is maintained
+          date,
+          emissions: {
+              transportation: { amount: transport, unit: 'kg of CO2', description: 'Transportation emissions' },
+              electricity: { amount: electricity, unit: 'kg of CO2', description: 'Electricity emissions' }
+          }
+      });
+
+      res.status(201).send(newEntry);
+  } catch (error) {
+      console.error('Failed to save emission data:', error);
+      res.status(500).send({ message: 'Failed to process emission data' });
+  }
+});
+
 
 export default router;

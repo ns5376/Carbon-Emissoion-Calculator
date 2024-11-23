@@ -2,9 +2,11 @@
     {{#if user}}
         <span>Welcome, {{user.username}}</span>
         <a href="/dashboard">Dashboard</a>
+        <a href="/emission-form">Enter Emissions</a> <!-- New link to Emission Form -->
         <a href="/logout">Logout</a>
     {{else}}
         <a href="/login">Login</a>
         <a href="/register">Register</a>
+        <a href="/emission-form">Enter Emissions</a> <!-- Visible to all users -->
     {{/if}}
 </nav>
