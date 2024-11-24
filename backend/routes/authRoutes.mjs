@@ -52,7 +52,7 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
-router.post('/api/submit-emissions', async (req, res) => {
+router.post('/api/transport', async (req, res) => {
   if (!req.isAuthenticated()) {
       return res.status(401).json({ message: "Unauthorized" });
   }

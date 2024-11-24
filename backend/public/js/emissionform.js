@@ -27,25 +27,26 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         // Example: Send data to your server-side endpoint
+        console.log('Sending request to server with data:', climatiqData);
         fetch('/api/transport', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(climatiqData),
+            body: JSON.stringify({ transport: document.getElementById('transportAmount').value }),
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                console.log('Success:', data);
-                // Update the UI or redirect as needed
-            } else {
-                throw new Error(data.message || 'Submission failed without a server message.');
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
             }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Success:', data);
         })
         .catch(error => {
             console.error('Submission failed:', error);
-            alert('Submission failed: ' + error.message);
         });
+        
     });   
 });
