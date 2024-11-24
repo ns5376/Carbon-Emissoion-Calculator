@@ -113,10 +113,10 @@ An Example List with Embedded Items:
 ## Research Topics
 
 
-* (2 points) Integration of Climatiq API
+* (3 points) Integration of Climatiq API
   * Enables accurate emissions data retrieval based on user activities for precise carbon calculations. Set up API calls to Climatiq based on user input and integrate the data into your emission calculation functions.
-* (3 points) Unit Testing with JavaScript (Jest)
-  * Ensures core functions, especially emission calculations, work reliably under various scenarios.  Write at least four tests covering key functions, such as emission calculations and API responses, to verify they handle various user inputs and data formats.
+* (2 points) Tailwind.css
+  * Ensures consistent styling throughout the project.
 * (3 points) User Authentication Using OAuth (Google, Facebook, Apple)
   * Allows secure and convenient login options for users via popular social accounts. Use Passport.js or a similar library to set up OAuth authentication with Google, Facebook, and Apple. Implement the login flow to securely handle tokens and user sessions.
 * (2 points) Integrate ESLint into Your Workflow

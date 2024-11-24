@@ -20,6 +20,7 @@
 ### URL(s) to GitHub Repository with Commits That Show Progress on Research
 - https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-ns5376/blob/master/backend/public/js/emissionform.js#L18
 - https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-ns5376/blob/master/backend/routes/authRoutes.mjsL#55
+- https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-ns5376/blob/master/backend/public/built.css
 
 ### References
 - https://www.climatiq.io/docs/guides/tutorials/quickstart

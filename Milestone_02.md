@@ -32,3 +32,4 @@ https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-ns5376/blob/
 * Gulp with ESLint for Code Quality: Integrated Gulp with ESLint to automate linting and enforce coding standards across the project on file changes.
 * Planned: Facebook and Apple OAuth: Planning to integrate Facebook and Apple login using OAuth 2.0 for additional secure authentication options.
 
+ 
