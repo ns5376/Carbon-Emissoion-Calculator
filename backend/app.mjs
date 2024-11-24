@@ -8,16 +8,29 @@ import 'dotenv/config';
 import path from 'path';
 import authRoutes from './routes/authRoutes.mjs';
 import { fileURLToPath } from 'url';
+import { engine } from 'express-handlebars';
 import './controllers/authController.mjs'; 
+import Handlebars from 'handlebars';
+import { allowInsecurePrototypeAccess } from '@handlebars/allow-prototype-access';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = path.dirname(__filename, 'public');
 
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
+
 app.set('view engine', 'hbs');
+app.engine('hbs', engine({
+  extname: 'hbs',
+  handlebars: allowInsecurePrototypeAccess(Handlebars),
+  defaultLayout: 'main',
+  layoutsDir: path.join(__dirname, 'views/layouts'),
+  partialsDir: path.join(__dirname, 'views/partials')
+}));
+
 app.set('views', path.join(__dirname, 'views'));
 // Set up sessions
 app.use(session({
@@ -69,7 +82,7 @@ app.get('/login', (req, res) => {
   app.get('/register', (req, res) => {
     res.render('register', { title: 'Register', user: req.user });
   });
-  
+
 
 // Logout route
 app.get('/logout', (req, res) => {
@@ -78,7 +91,9 @@ app.get('/logout', (req, res) => {
     });
   });
 
+  // app.listen(process.env.PORT,'0.0.0.0', () => {
+  //   console.log(`Server running on http://linserv1.cims.nyu.edu:${process.env.PORT}`);
+  // });
   app.listen(process.env.PORT,'0.0.0.0', () => {
     console.log(`Server running on http://linserv1.cims.nyu.edu:${process.env.PORT}`);
   });
-  

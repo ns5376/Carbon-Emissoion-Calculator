@@ -23,4 +23,5 @@ const EmissionEntrySchema = new Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-export default mongoose.model('EmissionEntry', EmissionEntrySchema);
+const EmissionEntry = mongoose.model('EmissionEntry', EmissionEntrySchema);
+export default EmissionEntry;

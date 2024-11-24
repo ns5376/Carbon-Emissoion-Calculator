@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carbon Emission Data Entry</title>
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+    <script src="/js/emissionform.js"></script>
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
@@ -16,7 +17,7 @@
             </div>
             <div>
                 <label for="transport" class="block text-sm font-medium text-gray-700">Transportation (kg of CO2)</label>
-                <input type="number" id="transport" name="transport" placeholder="Enter amount" required class="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                <input type="number" id="transportAmount" name="transport" placeholder="Enter amount" required class="mt-1 block w-full p-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
             </div>
             <div>
                 <label for="electricity" class="block text-sm font-medium text-gray-700">Electricity (kg of CO2)</label>
@@ -26,7 +27,7 @@
         </form>
     </div>
 
-<script src="/public/js/emissionform.js"></script>
+<script src="/js/emissionform.js"></script>
 
 </body>
 </html>

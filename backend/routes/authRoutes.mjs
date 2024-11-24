@@ -2,6 +2,9 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import passport from 'passport';  // Import passport here
 import User from '../models/User.mjs';
+import EmissionEntry from '../models/EmissionEntry.mjs';  // Adjust the path as necessary
+import axios from 'axios';
+
 
 const router = express.Router();
 const saltRounds = 10;
@@ -49,6 +52,46 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
+router.post('/api/submit-emissions', async (req, res) => {
+  if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  try {
+      const { distance, distance_unit } = req.body;
+      const climatiqData = {
+          emission_factor: {
+              activity_id: "your-activity-id", // Replace with actual ID
+              data_version: "19.19" // Ensure this matches the latest available version
+          },
+          parameters: {
+              distance: distance,
+              distance_unit: distance_unit
+          }
+      };
+
+      const climatiqResponse = await axios.post('https://api.climatiq.io/estimate', climatiqData, {
+          headers: {
+              'Authorization': `Bearer ${process.env.CLIMATIQ_API_KEY}`,
+              'Content-Type': 'application/json'
+          }
+      });
+
+      const emissionEntry = new EmissionEntry({
+          userId: req.user._id,
+          co2e: climatiqResponse.data.co2e,
+          unit: climatiqResponse.data.co2e_unit,
+          details: climatiqResponse.data
+      });
+
+      await emissionEntry.save();
+
+      res.json({ success: true, emissionData: emissionEntry });
+  } catch (error) {
+      console.error('Error processing emission data:', error);
+      res.status(500).json({ message: 'Failed to process emission data', error: error.message });
+  }
+});
 
 router.get('/emission-form', (req, res) => {
   // Check if user is logged in, redirect if not

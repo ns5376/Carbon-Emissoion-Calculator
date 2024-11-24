@@ -1,4 +1,4 @@
-// Using ES Modules syntax
+// Example of ES Module syntax for postcss.config.js
 export default {
     plugins: {
       tailwindcss: {},

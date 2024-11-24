@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
-  <link rel="stylesheet" href="/styles/dashboard.css">
+  <link rel="stylesheet" href="/built.css">
 </head>
 <body>
   <header>
@@ -20,6 +20,17 @@
       <li><strong>Email:</strong> {{user.email}}</li>
     </ul>
   </section>
+  <h1>Dashboard</h1>
+
+{{#if entry}}
+    <h2>Your Latest Emission Entry</h2>
+    <p><strong>Date:</strong> {{entry.date}}</p>
+    <p><strong>Transportation:</strong> {{entry.emissions.transportation.amount}} {{entry.emissions.transportation.unit}}</p>
+    <p><strong>Electricity:</strong> {{entry.emissions.electricity.amount}} {{entry.emissions.electricity.unit}}</p>
+{{else}}
+    <p>No recent emissions data available.</p>
+{{/if}}
+
   
   <footer>
     <p>Carbon Emission Calculator © 2024</p>
