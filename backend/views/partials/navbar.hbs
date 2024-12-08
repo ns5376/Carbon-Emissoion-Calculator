@@ -1,12 +1,22 @@
-<nav>
-    {{#if user}}
-        <span>Welcome, {{user.username}}</span>
-        <a href="/dashboard">Dashboard</a>
-        <a href="/emission-form">Enter Emissions</a> <!-- New link to Emission Form -->
-        <a href="/logout">Logout</a>
-    {{else}}
-        <a href="/login">Login</a>
-        <a href="/register">Register</a>
-        <a href="/emission-form">Enter Emissions</a> <!-- Visible to all users -->
-    {{/if}}
+<nav class="bg-gray-800 p-4">
+  <div class="container mx-auto flex justify-between items-center">
+    <!-- Logo or Branding -->
+    <a href="/" class="text-white text-lg font-bold">Carbon Tracker</a>
+
+    <!-- Links -->
+    <div class="flex space-x-4">
+      {{#if user}}
+        <span class="text-gray-300">Welcome, <span class="font-bold">{{user.username}}</span></span>
+        <a href="/dashboard" class="text-gray-300 hover:text-white">Dashboard</a>
+        <a href="/emission-form" class="text-gray-300 hover:text-white">Enter Emissions</a>
+        <a href="/feedback" class="text-gray-300 hover:text-white">Feedback</a>
+        <a href="/update" class="text-gray-300 hover:text-white">Profile</a>
+        <a href="/logout" class="text-gray-300 hover:text-white">Logout</a>
+      {{else}}
+        <a href="/login" class="text-gray-300 hover:text-white">Login</a>
+        <a href="/register" class="text-gray-300 hover:text-white">Register</a>
+        <a href="/emission-form" class="text-gray-300 hover:text-white">Enter Emissions</a>
+      {{/if}}
+    </div>
+  </div>
 </nav>

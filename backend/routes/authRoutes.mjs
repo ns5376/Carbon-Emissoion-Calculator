@@ -1,5 +1,4 @@
 import express from 'express';
-import bcrypt from 'bcrypt';
 import passport from 'passport';  // Import passport here
 import User from '../models/User.mjs';
 import EmissionEntry from '../models/EmissionEntry.mjs';  // Adjust the path as necessary
@@ -7,7 +6,6 @@ import axios from 'axios';
 
 
 const router = express.Router();
-const saltRounds = 10;
 
 
 router.post('/register', async (req, res, next) => {
@@ -52,46 +50,6 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
-router.post('/api/transport', async (req, res) => {
-  if (!req.isAuthenticated()) {
-      return res.status(401).json({ message: "Unauthorized" });
-  }
-
-  try {
-      const { distance, distance_unit } = req.body;
-      const climatiqData = {
-          emission_factor: {
-              activity_id: "your-activity-id", // Replace with actual ID
-              data_version: "19.19" // Ensure this matches the latest available version
-          },
-          parameters: {
-              distance: distance,
-              distance_unit: distance_unit
-          }
-      };
-
-      const climatiqResponse = await axios.post('https://api.climatiq.io/estimate', climatiqData, {
-          headers: {
-              'Authorization': `Bearer ${process.env.CLIMATIQ_API_KEY}`,
-              'Content-Type': 'application/json'
-          }
-      });
-
-      const emissionEntry = new EmissionEntry({
-          userId: req.user._id,
-          co2e: climatiqResponse.data.co2e,
-          unit: climatiqResponse.data.co2e_unit,
-          details: climatiqResponse.data
-      });
-
-      await emissionEntry.save();
-
-      res.json({ success: true, emissionData: emissionEntry });
-  } catch (error) {
-      console.error('Error processing emission data:', error);
-      res.status(500).json({ message: 'Failed to process emission data', error: error.message });
-  }
-});
 
 router.get('/emission-form', (req, res) => {
   // Check if user is logged in, redirect if not
@@ -129,30 +87,65 @@ router.post('/auth/apple/callback', passport.authenticate('apple', {
   successRedirect: '/dashboard',
   failureRedirect: '/login',
 }));
+router.get("/feedback", (req, res) => {
+  res.render("feedback", { user: req.user }); // Render feedback.hbs with user data (if logged in)
+});
+router.get("/update", (req, res) => {
+  if (!req.user) {
+    return res.redirect("/login"); // Redirect to login if the user is not authenticated
+  }
 
-// In routes file like authRoutes.mjs or a new route file, e.g., apiRoutes.mjs
-router.post('/api/submit', async (req, res) => {
+  res.render("update", { user: req.user }); // Render the profile update form
+});
+
+
+
+router.post("/api/feedback", async (req, res) => {
+  const { name, email, feedbackType, message } = req.body;
+
   try {
-      // Extract data from request body
-      const { date, transport, electricity } = req.body;
-
-      // Optionally, interact with an external API like Climatiq here if needed
-      // For example, send data to Climatiq and receive calculation results
-
-      // Save the data to your database using the EmissionEntry model
-      const newEntry = await EmissionEntry.create({
-          userId: req.user._id, // Assuming user is logged in and session is maintained
-          date,
-          emissions: {
-              transportation: { amount: transport, unit: 'kg of CO2', description: 'Transportation emissions' },
-              electricity: { amount: electricity, unit: 'kg of CO2', description: 'Electricity emissions' }
-          }
-      });
-
-      res.status(201).send(newEntry);
+    // Log or save feedback data
+    console.log("Feedback received:", { name, email, feedbackType, message });
+    res.json({ success: true, message: "Feedback submitted successfully" });
   } catch (error) {
-      console.error('Failed to save emission data:', error);
-      res.status(500).send({ message: 'Failed to process emission data' });
+    console.error("Error saving feedback:", error);
+    res.status(500).json({ success: false, message: "Failed to submit feedback" });
+  }
+});
+
+router.post("/api/update", async (req, res) => {
+  const { username, email } = req.body;
+
+  try {
+    if (!req.user) {
+      return res.status(401).json({ success: false, message: "Unauthorized" });
+    }
+
+    // Check for duplicate username
+    const existingUser = await User.findOne({ username });
+    if (existingUser && existingUser._id.toString() !== req.user._id.toString()) {
+      return res.status(400).json({ success: false, message: "Username is already taken." });
+    }
+
+    // Update the user's profile
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user._id,
+      { username, email },
+      { new: true } // Return the updated document
+    );
+
+    // Refresh the session with the updated user data
+    req.login(updatedUser, (err) => {
+      if (err) {
+        console.error("Error refreshing session:", err);
+        return res.status(500).json({ success: false, message: "Failed to refresh session" });
+      }
+
+      res.json({ success: true, redirect: "/", user: updatedUser });
+    });
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    res.status(500).json({ success: false, message: "Failed to update profile" });
   }
 });
 

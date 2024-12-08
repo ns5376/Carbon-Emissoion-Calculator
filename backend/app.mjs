@@ -11,6 +11,7 @@ import { fileURLToPath } from 'url';
 import { engine } from 'express-handlebars';
 import './controllers/authController.mjs'; 
 import Handlebars from 'handlebars';
+import emissionRoutes from "./routes/emissionRoutes.mjs";
 import { allowInsecurePrototypeAccess } from '@handlebars/allow-prototype-access';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -21,6 +22,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
+app.use(emissionRoutes);
 
 app.set('view engine', 'hbs');
 app.engine('hbs', engine({
@@ -53,13 +55,13 @@ mongoose.connect(process.env.DSN)
   .catch(err => console.error('Database connection error:', err));
 
 // Routes
-app.get('/', (req, res) => {
-    res.render('home', { 
-      title: 'Home', 
-      message: 'Welcome to the Carbon Emission Calculator!',
-      user: req.user // Pass user information if authenticated
-    });
-  });
+app.get("/", (req, res) => {
+  if (req.user) {
+    return res.render("home", { user: req.user });
+  }
+  res.render("home", { user: null });
+});
+
   
 
   app.get('/dashboard', (req, res) => {

@@ -1,0 +1,78 @@
+<div class="max-w-md mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+  <h2 class="text-xl font-bold mb-4">Feedback Form</h2>
+  <form id="feedbackForm" class="space-y-4">
+    <div>
+      <label for="name" class="block text-sm font-medium text-gray-700">Name (Optional)</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+      />
+    </div>
+    <div>
+      <label for="email" class="block text-sm font-medium text-gray-700">Email (Optional)</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+      />
+    </div>
+    <div>
+      <label for="feedbackType" class="block text-sm font-medium text-gray-700">Feedback Type</label>
+      <select
+        id="feedbackType"
+        name="feedbackType"
+        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+      >
+        <option value="bug">Bug Report</option>
+        <option value="feature">Feature Request</option>
+        <option value="general">General Feedback</option>
+      </select>
+    </div>
+    <div>
+      <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+      <textarea
+        id="message"
+        name="message"
+        class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+        rows="4"
+      ></textarea>
+    </div>
+    <button
+      type="submit"
+      class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-600"
+    >
+      Submit Feedback
+    </button>
+  </form>
+  <div id="feedbackResponse" class="mt-4 text-sm hidden"></div>
+</div>
+<script>
+  document.getElementById("feedbackForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const response = await fetch("/api/feedback", {
+      method: "POST",
+      body: JSON.stringify(Object.fromEntries(formData)),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const result = await response.json();
+    const feedbackResponse = document.getElementById("feedbackResponse");
+
+    if (result.success) {
+      feedbackResponse.textContent = "Thank you for your feedback!";
+      feedbackResponse.classList.remove("hidden");
+      feedbackResponse.classList.add("text-green-600");
+    } else {
+      feedbackResponse.textContent = "Failed to submit feedback. Please try again.";
+      feedbackResponse.classList.remove("hidden");
+      feedbackResponse.classList.add("text-red-600");
+    }
+  });
+</script>

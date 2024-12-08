@@ -15,11 +15,15 @@
     {{#if user}}
       <p>Welcome, {{user.username}}!</p>
       <a href="/logout">Logout</a>
+      <a href="/feedback">Give Feedback</a>
+      <a href="/profile">Update Profile</a>
     {{else}}
       <a href="/login">Login</a>
       <a href="/register">Register</a>
+      
     {{/if}}
   </nav>
+
 
   <main>
     <section>

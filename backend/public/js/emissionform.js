@@ -1,52 +1,68 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('emissionForm');
-    form.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        // Gather form data
-        const formData = new FormData(form);
-        // Convert transport data from string to number if needed
-        const transport = Number(formData.get('transport'));
-
-        // Validate transport to ensure it's a number
-        if (isNaN(transport)) {
-            alert('Please enter a valid number for transportation distance.');
-            return; // Stop the function if validation fails
-        }
-
-        // Prepare data object for the API request
-        const climatiqData = {
-            emission_factor: {
-                activity_id: "passenger_vehicle-vehicle_type_average_car-fuel_source_gasoline-engine_size_segment_b", // Replace with the actual ID
-                data_version: "^6" // Specify the data version
-            },
-            parameters: {
-                distance: transport,
-                distance_unit: "km" // Make sure unit matches Climatiq requirements
-            }
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("emissionForm");
+  
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+  
+      // Collect form data
+      const formData = new FormData(form);
+      const transportationAmount = formData.get("transportationAmount");
+      const transportationUnit = formData.get("transportationUnit");
+      const electricityAmount = formData.get("electricityAmount");
+      const electricityUnit = formData.get("electricityUnit");
+      const wasteAmount = formData.get("wasteAmount");
+      const wasteUnit = formData.get("wasteUnit");
+      const waterAmount = formData.get("waterAmount");
+      const waterUnit = formData.get("waterUnit");
+  
+      try {
+        // Prepare the payload for the backend
+        const payload = {
+          transportation: {
+            amount: parseFloat(transportationAmount),
+            unit: transportationUnit,
+          },
+          electricity: {
+            amount: parseFloat(electricityAmount),
+            unit: electricityUnit,
+          },
+          waste: {
+            amount: parseFloat(wasteAmount),
+            unit: wasteUnit,
+          },
+          water: {
+            amount: parseFloat(waterAmount),
+            unit: waterUnit,
+          },
         };
-
-        // Example: Send data to your server-side endpoint
-        console.log('Sending request to server with data:', climatiqData);
-        fetch('/api/transport', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ transport: document.getElementById('transportAmount').value }),
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('Success:', data);
-        })
-        .catch(error => {
-            console.error('Submission failed:', error);
+  
+        // Send data to the backend
+        const response = await fetch("/api/emission", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
         });
-        
-    });   
-});
+  
+        if (!response.ok) {
+          throw new Error("Failed to fetch emission data.");
+        }
+  
+        const data = await response.json();
+        console.log("Emission Data:", data);
+  
+        // Display the result
+        const resultDiv = document.getElementById("result");
+        resultDiv.textContent = `
+          Transportation Emission: ${data.transportation?.amount || "N/A"} ${data.transportation?.unit || ""}
+          Electricity Emission: ${data.electricity?.amount || "N/A"} ${data.electricity?.unit || ""}
+          Waste Emission: ${data.waste?.amount || "N/A"} ${data.waste?.unit || ""}
+          Water Emission: ${data.water?.amount || "N/A"} ${data.water?.unit || ""}
+        `;
+        resultDiv.classList.remove("hidden");
+      } catch (error) {
+        console.error("Error:", error);
+        alert(error.message);
+      }
+    });
+  });
+  
