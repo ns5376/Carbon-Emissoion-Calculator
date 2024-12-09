@@ -77,15 +77,6 @@ router.get(
   }
 );
 
-// OAuth Facebook login route
-router.get("/auth/facebook", passport.authenticate("facebook", { scope: ["email"] }));
-router.get(
-  "/auth/facebook/callback",
-  passport.authenticate("facebook", { failureRedirect: "/login" }),
-  (req, res) => {
-    res.redirect("/dashboard");
-  }
-);
 
 // Render dashboard with user entries
 router.get("/dashboard", ensureAuthenticated, async (req, res) => {
@@ -97,6 +88,7 @@ router.get("/dashboard", ensureAuthenticated, async (req, res) => {
         (entry.emissions.transportation?.amount || 0) +
         (entry.emissions.electricity?.amount || 0),
     }));
+    
 
     res.render("dashboard", { entries: processedEntries });
   } catch (error) {
@@ -112,6 +104,8 @@ router.get("/dashboard/entry/:id", ensureAuthenticated, async (req, res) => {
     if (!entry) {
       return res.status(404).send("Entry not found.");
     }
+    console.log("Entry Fetched:", entry);
+
     res.render("entry-details", { entry });
   } catch (error) {
     console.error("Error fetching entry details:", error);
@@ -119,15 +113,6 @@ router.get("/dashboard/entry/:id", ensureAuthenticated, async (req, res) => {
   }
 });
 
-// OAuth Apple login route
-router.get("/auth/apple", passport.authenticate("apple"));
-router.post(
-  "/auth/apple/callback",
-  passport.authenticate("apple", { failureRedirect: "/login" }),
-  (req, res) => {
-    res.redirect("/dashboard");
-  }
-);
 
 // Render feedback form
 router.get("/feedback", ensureAuthenticated, (req, res) => {

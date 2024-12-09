@@ -11,29 +11,13 @@
     <h1>{{message}}</h1>
   </header>
 
-  <nav>
-    {{#if user}}
-      <p>Welcome, {{user.username}}!</p>
-      <a href="/logout">Logout</a>
-      <a href="/feedback">Give Feedback</a>
-      <a href="/profile">Update Profile</a>
-    {{else}}
-      <a href="/login">Login</a>
-      <a href="/register">Register</a>
-      
-    {{/if}}
-  </nav>
-
 
   <main>
     <section>
-      <h2>About This App</h2>
+      <h2 class = "text-1xl font-bold mb-4">About This App</h2>
       <p>This application helps you calculate and track your carbon emissions based on your daily activities. By understanding your carbon footprint, you can make more environmentally conscious choices.</p>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2023 Carbon Emission Calculator. All rights reserved.</p>
-  </footer>
 </body>
 </html>

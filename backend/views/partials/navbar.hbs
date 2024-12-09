@@ -1,23 +1,18 @@
-<nav class="bg-gray-800 p-4">
+<nav class="bg-green-200 p-4 shadow-md">
   <div class="container mx-auto flex justify-between items-center">
-    <!-- Logo or Branding -->
-    <a href="/" class="text-white text-lg font-bold">Carbon Tracker</a>
-
-    <!-- Links -->
-    <div class="flex space-x-4">
+    <a href="/" class="text-green-800 text-xl font-bold">Carbon Tracker</a>
+    <ul class="flex space-x-4">
       {{#if user}}
-        <span class="text-gray-300">Welcome, <span class="font-bold">{{user.username}}</span></span>
-        <a href="/dashboard" class="text-gray-300 hover:text-white">Dashboard</a>
-        <a href="/emission-form" class="text-gray-300 hover:text-white">Add Emissions</a>
-        <a href="/feedback" class="text-gray-300 hover:text-white">Feedback</a>
-        <a href="/update" class="text-gray-300 hover:text-white">Update</a>
-        <a href="/logout" class="text-gray-300 hover:text-white">Logout</a>
-
+        <li><a href="/dashboard" class="text-green-700 hover:underline">Dashboard</a></li>
+        <li><a href="/emission-form" class="text-green-700 hover:underline">Add Emissions</a></li>
+        <li><a href="/update" class="text-green-700 hover:underline">Update Profile</a></li>
+        <li><a href="/feedback" class="text-green-700 hover:underline">Feedback</a></li>
+        <li><a href="/logout" class="text-green-700 hover:underline">Logout</a></li>
       {{else}}
-        <a href="/login" class="text-gray-300 hover:text-white">Login</a>
-        <a href="/register" class="text-gray-300 hover:text-white">Register</a>
-        <a href="/emission-form" class="text-gray-300 hover:text-white">Enter Emissions</a>
+        <li><a href="/login" class="text-green-700 hover:underline">Login</a></li>
+        <li><a href="/register" class="text-green-700 hover:underline">Register</a></li>
+        <li><a href="/feedback" class="text-green-700 hover:underline">Feedback</a></li>
       {{/if}}
-    </div>
+    </ul>
   </div>
 </nav>

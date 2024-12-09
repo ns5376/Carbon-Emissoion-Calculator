@@ -13,10 +13,7 @@ import './controllers/authController.mjs';
 import Handlebars from 'handlebars';
 import emissionRoutes from "./routes/emissionRoutes.mjs";
 import { allowInsecurePrototypeAccess } from '@handlebars/allow-prototype-access';
-import hbs from "hbs"; // or "express-handlebars" depending on your setup
 
-// Define the custom "add" helper
-hbs.registerHelper("add", (a, b) => a + b);
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -28,6 +25,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 app.use(emissionRoutes);
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use((req, res, next) => {
+  res.locals.user = req.user || null; // Makes `user` available in all views
+  next();
+});
 
 app.set('view engine', 'hbs');
 app.engine('hbs', engine({
@@ -80,7 +89,7 @@ app.get("/", (req, res) => {
 app.get('/login', (req, res) => {
     res.render('login', { title: 'Login', user: req.user });
   });
-  app.post('/login', passport.authenticate('local', {
+app.post('/login', passport.authenticate('local', {
     successRedirect: '/', // Redirect to home page on successful login
     failureRedirect: '/login'
   }));

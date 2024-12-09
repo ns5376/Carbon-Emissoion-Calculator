@@ -621,3 +621,9 @@ video {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(99 102 241 / var(--tw-ring-opacity, 1));
 }
+.bg-green-500 {
+  background-color: #48bb78 !important;
+}
+.hover\:bg-green-700:hover {
+  background-color: #2f855a !important;
+}
