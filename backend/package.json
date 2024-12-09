@@ -6,7 +6,11 @@
   "type": "module",
   "author": "",
   "scripts": {
-    "build-css": "postcss public/css/styles.css -o public/built.css"
+    "build-css": "postcss public/css/styles.css -o public/built.css",
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext .js --ignore-pattern node_modules",
+    "lint:watch": "npm run lint -- --watch"
   },
   "license": "ISC",
   "dependencies": {
@@ -27,13 +31,18 @@
   "devDependencies": {
     "@eslint/js": "^9.14.0",
     "autoprefixer": "^10.4.20",
-    "eslint": "^9.14.0",
+    "chokidar-cli": "^3.0.0",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.31.0",
     "globals": "^15.12.0",
     "gulp": "^5.0.0",
     "gulp-eslint": "^6.0.0",
     "gulp-watch": "^5.0.1",
     "postcss": "^8.4.49",
     "postcss-cli": "^11.0.0",
-    "tailwindcss": "^3.4.15"
+    "tailwindcss": "^3.4.15",
+    "vite": "^6.0.3",
+    "vite-plugin-eslint": "^1.8.1"
   }
 }
