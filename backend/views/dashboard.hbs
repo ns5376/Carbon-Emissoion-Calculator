@@ -22,14 +22,25 @@
   </section>
   <h1>Dashboard</h1>
 
-{{#if entry}}
-    <h2>Your Latest Emission Entry</h2>
-    <p><strong>Date:</strong> {{entry.date}}</p>
-    <p><strong>Transportation:</strong> {{entry.emissions.transportation.amount}} {{entry.emissions.transportation.unit}}</p>
-    <p><strong>Electricity:</strong> {{entry.emissions.electricity.amount}} {{entry.emissions.electricity.unit}}</p>
-{{else}}
-    <p>No recent emissions data available.</p>
-{{/if}}
+<div class="container mx-auto p-6">
+  <h1 class="text-2xl font-bold mb-4">Your Emission Entries</h1>
+
+  <ul class="space-y-4">
+    {{#each entries}}
+    <li class="p-4 bg-white shadow rounded-lg">
+      <h2 class="text-lg font-bold">Date: {{this.date}}</h2>
+      <p>Total Emissions: 
+        <tr>
+  <td>Total Emissions</td>
+  <td>{{totalEmissions}} kg of CO2</td>
+</tr>
+
+      <a href="/dashboard/entry/{{this._id}}" class="text-blue-500 hover:underline">View Details</a>
+    </li>
+    {{/each}}
+  </ul>
+</div>
+
 
   
   <footer>

@@ -6,36 +6,23 @@ document.addEventListener("DOMContentLoaded", function () {
   
       // Collect form data
       const formData = new FormData(form);
-      const transportationAmount = formData.get("transportationAmount");
-      const transportationUnit = formData.get("transportationUnit");
-      const electricityAmount = formData.get("electricityAmount");
-      const electricityUnit = formData.get("electricityUnit");
-      const wasteAmount = formData.get("wasteAmount");
-      const wasteUnit = formData.get("wasteUnit");
-      const waterAmount = formData.get("waterAmount");
-      const waterUnit = formData.get("waterUnit");
+      const fields = ["transportation", "electricity", "waste", "water"];
+      const payload = {};
+  
+      // Loop through fields and validate inputs
+      for (const field of fields) {
+        const amount = formData.get(`${field}Amount`);
+        const unit = formData.get(`${field}Unit`);
+  
+        if (amount && unit) {
+          payload[field] = {
+            amount: parseFloat(amount),
+            unit,
+          };
+        }
+      }
   
       try {
-        // Prepare the payload for the backend
-        const payload = {
-          transportation: {
-            amount: parseFloat(transportationAmount),
-            unit: transportationUnit,
-          },
-          electricity: {
-            amount: parseFloat(electricityAmount),
-            unit: electricityUnit,
-          },
-          waste: {
-            amount: parseFloat(wasteAmount),
-            unit: wasteUnit,
-          },
-          water: {
-            amount: parseFloat(waterAmount),
-            unit: waterUnit,
-          },
-        };
-  
         // Send data to the backend
         const response = await fetch("/api/emission", {
           method: "POST",
@@ -44,25 +31,24 @@ document.addEventListener("DOMContentLoaded", function () {
         });
   
         if (!response.ok) {
-          throw new Error("Failed to fetch emission data.");
+          const errorText = await response.text();
+          throw new Error(`Failed to fetch emission data: ${errorText}`);
         }
   
         const data = await response.json();
         console.log("Emission Data:", data);
   
         // Display the result
-        const resultDiv = document.getElementById("result");
-        resultDiv.textContent = `
-          Transportation Emission: ${data.transportation?.amount || "N/A"} ${data.transportation?.unit || ""}
-          Electricity Emission: ${data.electricity?.amount || "N/A"} ${data.electricity?.unit || ""}
-          Waste Emission: ${data.waste?.amount || "N/A"} ${data.waste?.unit || ""}
-          Water Emission: ${data.water?.amount || "N/A"} ${data.water?.unit || ""}
-        `;
-        resultDiv.classList.remove("hidden");
-      } catch (error) {
-        console.error("Error:", error);
-        alert(error.message);
-      }
+        if (data.redirect) {
+            // Redirect to dashboard
+            window.location.href = data.redirect;
+          } else {
+            alert("Emission data saved successfully!");
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          alert(error.message);
+        }
     });
   });
   

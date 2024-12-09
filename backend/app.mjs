@@ -13,6 +13,11 @@ import './controllers/authController.mjs';
 import Handlebars from 'handlebars';
 import emissionRoutes from "./routes/emissionRoutes.mjs";
 import { allowInsecurePrototypeAccess } from '@handlebars/allow-prototype-access';
+import hbs from "hbs"; // or "express-handlebars" depending on your setup
+
+// Define the custom "add" helper
+hbs.registerHelper("add", (a, b) => a + b);
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename, 'public');

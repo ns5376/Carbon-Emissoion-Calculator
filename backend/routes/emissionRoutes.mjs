@@ -1,9 +1,17 @@
 import express from "express";
 import axios from "axios";
+import passport from 'passport';
+import session from 'express-session';
+import EmissionEntry from "../models/EmissionEntry.mjs";
 
 const router = express.Router();
-
-router.post("/api/emission", async (req, res) => {
+router.use(session({
+    secret: '8f742231b10e8888abcd99yyyzzz85a5',
+    resave: false,
+    saveUninitialized: false,
+  }));
+  
+router.post("/api/emission", passport.authenticate('session'), async (req, res) => {
   try {
     const { transportation, electricity, waste, water } = req.body; // Extract all categories from the request body
 
@@ -89,13 +97,18 @@ router.post("/api/emission", async (req, res) => {
         description: "Water emissions",
       };
     }
-
+    const newEntry = new EmissionEntry({
+        userId: req.user._id,
+        date: new Date(),
+        emissions,
+      });
+      await newEntry.save();
     // Send all calculated emissions back to the frontend
-    res.status(200).json(emissions);
-  } catch (error) {
-    console.error("Error processing emissions:", error.response ? error.response.data : error.message);
-    res.status(500).json({ message: "Failed to process emission data." });
-  }
+    res.status(200).json({ success: true, redirect: "/dashboard" });
+} catch (error) {
+  console.error("Error processing emissions:", error);
+  res.status(500).json({ success: false, message: "Failed to process emissions." });
+}
 });
 
 export default router;
