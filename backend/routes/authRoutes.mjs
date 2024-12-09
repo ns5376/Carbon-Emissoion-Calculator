@@ -3,6 +3,8 @@ import passport from "passport"; // Import passport
 import User from "../models/User.mjs";
 import EmissionEntry from "../models/EmissionEntry.mjs"; // Adjust the path as necessary
 import exphbs from "express-handlebars"; // For Handlebars helpers
+import session from "express-session";
+
 
 // Set up Handlebars with helpers
 const hbs = exphbs.create({
@@ -78,17 +80,17 @@ router.get(
 );
 
 
-// Render dashboard with user entries
 router.get("/dashboard", ensureAuthenticated, async (req, res) => {
   try {
     const entries = await EmissionEntry.find({ userId: req.user._id });
-    const processedEntries = entries.map((entry) => ({
-      ...entry.toObject(),
-      totalEmissions:
-        (entry.emissions.transportation?.amount || 0) +
-        (entry.emissions.electricity?.amount || 0),
-    }));
-    
+
+    const processedEntries = entries.map((entry) => {
+      const totalEmissions = Object.values(entry.emissions || {}).reduce(
+        (sum, emission) => sum + (emission.amount || 0),
+        0
+      );
+      return { ...entry.toObject(), totalEmissions };
+    });
 
     res.render("dashboard", { entries: processedEntries });
   } catch (error) {
@@ -96,6 +98,7 @@ router.get("/dashboard", ensureAuthenticated, async (req, res) => {
     res.status(500).send("Error loading dashboard.");
   }
 });
+
 
 // View details of a specific entry
 router.get("/dashboard/entry/:id", ensureAuthenticated, async (req, res) => {

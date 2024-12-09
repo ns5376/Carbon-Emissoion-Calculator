@@ -97,13 +97,15 @@ router.post("/api/emission", passport.authenticate('session'), async (req, res) 
         description: "Water emissions",
       };
     }
-    // Save the entry or update the existing one
-    const today = new Date().toISOString().split("T")[0];
-    await EmissionEntry.updateOne(
-      { userId: req.user._id, date: today },
-      { $set: { emissions } },
-      { upsert: true }
-    );
+
+   // Save the new entry without modifying existing ones
+   const newEntry = new EmissionEntry({
+    userId: req.user._id, // Link the entry to the logged-in user
+    date: new Date(),
+    emissions,
+  });
+
+  await newEntry.save();
     // Send all calculated emissions back to the frontend
     res.status(200).json({ success: true, redirect: "/dashboard" });
 } catch (error) {
