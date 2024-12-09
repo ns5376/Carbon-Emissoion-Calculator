@@ -57,9 +57,5 @@ https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-ns5376/blob/
 4. https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-ns5376/blob/master/backend/tailwind.config.mjs
 
 
-## Optional project notes
-(TODO: optionally add any other information required for using/testing the final project)
-
 ## Attributions
-1. (TODO: add each attribution, such as: routes/index.js - Authentication code based off of [this tutorial](http://foo.bar/baz))
-2. See source code comments if annotated.
+1. API documentation: https://www.climatiq.io/docs/api-reference
