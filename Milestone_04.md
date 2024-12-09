@@ -1,10 +1,10 @@
 # Milestone 04 - Final Project Documentation
 
 ## NetID
-(TODO: add your netid)
+ns5376
 
 ## Name
-(TODO: add your first and last name)
+Nisa Shahid
 
 ## Repository Link
 https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-ns5376`
@@ -13,43 +13,49 @@ https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-ns5376`
 http://linserv1.cims.nyu.edu:33344
 
 ## URL for form 1 (from previous milestone)
-http://linserv1.cims.nyu.edu:33344/
+http://linserv1.cims.nyu.edu:33344/emission-form
 
-### Special Instructions for Form 1
-(TODO: if your app requires special instructions to use or if your app requires authentication, add information here; otherwise, leave blank)
 
 ## URL for form 2 (for current milestone)
-[TBD](http://linserv1.cims.nyu.edu:YOUR_PORT_NUMBER/form2)
+http://linserv1.cims.nyu.edu:33344/update
 
-### Special Instructions for Form 2
-(TODO: if your app requires special instructions to use or if your app requires authentication, add information here; otherwise, leave blank)
 
 ## URL for form 3 (from previous milestone)
-[TBD](http://linserv1.cims.nyu.edu:YOUR_PORT_NUMBER/form3)
+http://linserv1.cims.nyu.edu:33344/feedback
+http://linserv1.cims.nyu.edu:33344/login
+http://linserv1.cims.nyu.edu:33344/register
 
-### Special Instructions for Form 3
-(TODO: if your app requires special instructions to use or if your app requires authentication, add information here; otherwise, leave blank)
 
 ## First link to GitHub line number(s) for constructor, HOF, etc.
-[TBD](https://github.com/[COURSE]/[REPO_NAME]/blob/main/path/to/file.js#LXX)
+https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-ns5376/blob/master/backend/routes/authRoutes.mjs#L87
 
 ## Second link to GitHub line number(s) for constructor, HOF, etc.
-[TBD](https://github.com/[COURSE]/[REPO_NAME]/blob/main/path/to/another-file.js#LXX)
+https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-ns5376/blob/master/backend/routes/authRoutes.mjs#L88
 
 ### Short description for links above
-1. (TODO: describe what the first link is, for example: myFunction is a HOF that retrieves JSON from a URL, map is used to transform the array of objects into an array of names)
-2. (TODO: describe what the second link is)
+1. The map function iterates over each item in the entries array (which represents the emission entries retrieved from the database).
+2. The reduce function calculates the sum of all amount values within the emissions object.
 
 ## Link to GitHub line number(s) for schemas (db.js or models folder)
-[TBD](https://github.com/[COURSE]/[REPO_NAME]/blob/main/models/Schema.js)
+https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-ns5376/blob/master/backend/models
 
 ## Description of research topics above with points
-1. (TODO: add description of each research topic here, including point values for each, one per line. For example: 2 points - applied and modified "Clean Blog" Bootstrap theme)
-2. (TODO: 2 points - implemented Passport.js authentication with Google OAuth)
+1. Integration of Climatiq API for Emission Calculations
+The application integrates the Climatiq API to estimate CO2 emissions for various activities. Users input data such as transportation distance, electricity consumption, waste, and water usage, and the API calculates the equivalent carbon emissions. 
+2. Google Authentication with Passport.js
+The app uses Passport.js with the Google OAuth strategy for user authentication. This allows users to log in securely using their Google accounts. After successful authentication, users are redirected to the dashboard. 
+3. Vite with ESLint Integration for Workflow Automation 
+Vite is integrated as a build tool for faster development and optimized production builds. ESLint is configured to lint the codebase during development, ensuring code quality and adherence to coding standards. 
+4. Tailwind CSS for UI Design (2 points)
+The application uses Tailwind CSS for responsive and utility-first styling. Tailwind enables rapid design iteration with pre-defined utility classes, creating a modern and consistent UI for forms, dashboards, and navigation. 
 
 ## Links to GitHub line number(s) for research topics described above
-1. [TBD](https://github.com/[COURSE]/[REPO_NAME]/blob/main/path/to/research-file1.js#LXX)
-2. [TBD](https://github.com/[COURSE]/[REPO_NAME]/blob/main/path/to/research-file2.js#LXX)
+1. https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-ns5376/blob/master/backend/routes/emissionRoutes.mjs#L31
+2. https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-ns5376/blob/master/backend/routes/authRoutes.mjs#L69
+3. https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-ns5376/blob/master/backend/vite.config.js
+https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-ns5376/blob/master/backend/.eslintrc.json
+4. https://github.com/nyu-csci-ua-0467-001-002-fall-2024/final-project-ns5376/blob/master/backend/tailwind.config.mjs
+
 
 ## Optional project notes
 (TODO: optionally add any other information required for using/testing the final project)
