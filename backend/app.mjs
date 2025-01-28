@@ -49,15 +49,8 @@ app.engine('hbs', engine({
 
 app.set('views', path.join(__dirname, 'views'));
 // Set up sessions
-app.use(session({
-  secret: process.env.SESSION_SECRET,
-  resave: false,
-  saveUninitialized: false,
-}));
 
 // Initialize Passport and session support
-app.use(passport.initialize());
-app.use(passport.session());
 app.use(authRoutes);
 passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
@@ -113,3 +106,4 @@ app.get('/logout', (req, res) => {
   app.listen(process.env.PORT,'0.0.0.0', () => {
     console.log(`Server running on http://linserv1.cims.nyu.edu:${process.env.PORT}`);
   });
+  // export default app;
